@@ -113,9 +113,7 @@ module Homebrew
     # Prepare tag and url
     tag        	= tag_path.delete_prefix 'refs/tags/' # 'refs/tags/v1.2.3' → 'v1.2.3'
     version_tag	= Version.parse tag
-    url_tag    	= url_old.to_s.gsub(version_manifest, version_tag)
     version    	= version_tag
-    # url_new  	= url_tag # explicit urls override #{version} templates, so skip them
 
     exit(0) if version_tag == version_manifest # exit if no version update required
 
@@ -125,14 +123,14 @@ module Homebrew
       "--message=#{message}"  	                      	, #
       *("--fork-org=#{org}"   	unless org    .blank?)	, # Use the specified GitHub organization for forking
       *("--version=#{version}"	)                     	, # Specify the new version for the cask
-      *("--url=#{url_new}"    	unless url_new.blank?)	, # Specify the URL for the new download
       *('--force'             	unless force  .false?)	, # Ignore duplicate open PRs
       *('--dry-run'           	unless dryrun .false?)	, # Print what would be done rather than doing it
       cask_full_name
       # tag/revisions             	not supported in casks	  #
       # *('--sha256=#{sha256}'    	if     sha)           	, # best effort to determine the SHA-256 will be made if the value is not supplied by the user
       # *("--version=#{version}"  	unless is_git)        	, # Specify the new version for the cask
-      # *("--url=#{url_new}"      	unless is_git)        	, # Specify the URL for the new download
+      # *("--url=#{url_new}"      	unless url_new.blank?)	, # Specify the URL for the new download
+      # *("--url=#{url_new}"      	unless is_git)        	, # Specify the URL for the new download. Overrides #{version} templates, so skip it
       # *("--tag=#{tag}"          	if     is_git)        	, # part of bump-formula-pr, not brew-cask-pr
       # *("--revision=#{revision}"	if     is_git)        	, # part of bump-formula-pr, not brew-cask-pr
   else
