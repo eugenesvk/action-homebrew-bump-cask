@@ -16,6 +16,10 @@ inputs:
     description: |
       Fork tap repository to selected GitHub organization.
     required: false
+  no_fork:
+    description: |
+      Use the origin repository instead of forking.
+    required: false
   tap:
     description: |
       Cask tap.
@@ -87,6 +91,7 @@ runs:
         HOMEBREW_BUMP_ORG: ${{inputs.org}}
         HOMEBREW_BUMP_TAP: ${{inputs.tap}}
         HOMEBREW_BUMP_CASK: ${{inputs.cask}}
+        HOMEBREW_BUMP_NO_FORK: ${{inputs.no_fork}}
         HOMEBREW_BUMP_TAG: ${{inputs.tag}}
         HOMEBREW_BUMP_REVISION: ${{inputs.revision}}
         HOMEBREW_BUMP_FORCE: ${{inputs.force}}

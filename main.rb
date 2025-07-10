@@ -51,6 +51,7 @@ module Homebrew
   # Get inputs
   message  	= ENV['HOMEBREW_BUMP_MESSAGE']  	#
   org      	= ENV['HOMEBREW_BUMP_ORG']      	# 'orgName'
+  no_fork  	= ENV['HOMEBREW_BUMP_NO_FORK']  	#
   tap_path 	= ENV['HOMEBREW_BUMP_TAP']      	# 'userName/tapName'
   cask_name	= ENV['HOMEBREW_BUMP_CASK']     	# 'caskName'
   tag_path 	= ENV['HOMEBREW_BUMP_TAG']      	# 'refs/tags/v1.2.3'
@@ -120,6 +121,7 @@ module Homebrew
       '--no-browse'           	                      	, # Print the pull request URL instead of opening in a browser
       "--message=#{message}"  	                      	, #
       *("--fork-org=#{org}"   	unless org    .blank?)	, # Use the specified GitHub organization for forking
+      *("--no-fork"           	unless no_fork.false?)	, #
       *("--version=#{version}"	)                     	, # Specify the new version for the cask
       *('--force'             	unless force  .false?)	, # Ignore duplicate open PRs
       *('--dry-run'           	unless dryrun .false?)	, # Print what would be done rather than doing it
@@ -170,6 +172,7 @@ module Homebrew
           "--message=#{message}",
           "--version=#{version}",
           *("--fork-org=#{org}"	unless org   .blank?),
+          *("--no-fork"        	unless no_fork.false?),
           *('--force'          	unless force .false?),
           *('--dry-run'        	unless dryrun.false?),
           cask_name

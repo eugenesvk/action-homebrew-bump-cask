@@ -34,6 +34,7 @@ The Action will extract all needed informations by itself, you just need to spec
     cask    	: CASK              	# Required  Cask name
     tap     	: USER/REPO         	# Optional, defaults to homebrew/core
     org     	: ORG               	# Optional, will create tap repo fork in organization
+    no_fork 	: false             	# Optional, use the origin repository instead of forking
     tag     	: ${{github.ref}}   	# Optional, will be determined automatically
     revision	: ${{github.sha}}   	# Optional, will be determined automatically
     force   	: false             	# Optional, if don't want to check for already open PRs
