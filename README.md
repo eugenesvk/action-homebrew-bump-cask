@@ -19,8 +19,8 @@ Listen for new tags in workflow:
 
 ```yaml
 on:
-  release: # trigger when release got created (preferred)
-    types: [created]
+  release: # trigger when release got released (preferred)
+    types: [released]
   # push:  # trigger on tag push
   #   tags:
   #     - '*'
