@@ -49,18 +49,18 @@ module Homebrew
   # patch_brew
 
   # Get inputs
-  message  	= ENV['HOMEBREW_BUMP_MESSAGE']  	#
+  message   	= ENV['HOMEBREW_BUMP_MESSAGE']  	#
   user_name 	= ENV['HOMEBREW_GIT_NAME']      	#
   user_email	= ENV['HOMEBREW_GIT_EMAIL']     	#
-  org      	= ENV['HOMEBREW_BUMP_ORG']      	# 'orgName'
-  no_fork  	= ENV['HOMEBREW_BUMP_NO_FORK']  	#
-  tap_path 	= ENV['HOMEBREW_BUMP_TAP']      	# 'userName/tapName'
-  cask_name	= ENV['HOMEBREW_BUMP_CASK']     	# 'caskName'
-  tag_path 	= ENV['HOMEBREW_BUMP_TAG']      	# 'refs/tags/v1.2.3'
-  revision 	= ENV['HOMEBREW_BUMP_REVISION'] 	#
-  force    	= ENV['HOMEBREW_BUMP_FORCE']    	#
-  livecheck	= ENV['HOMEBREW_BUMP_LIVECHECK']	#
-  dryrun   	= ENV['HOMEBREW_BUMP_DRYRUN']   	#
+  org       	= ENV['HOMEBREW_BUMP_ORG']      	# 'orgName'
+  no_fork   	= ENV['HOMEBREW_BUMP_NO_FORK']  	#
+  tap_path  	= ENV['HOMEBREW_BUMP_TAP']      	# 'userName/tapName'
+  cask_name 	= ENV['HOMEBREW_BUMP_CASK']     	# 'caskName'
+  tag_path  	= ENV['HOMEBREW_BUMP_TAG']      	# 'refs/tags/v1.2.3'
+  revision  	= ENV['HOMEBREW_BUMP_REVISION'] 	#
+  force     	= ENV['HOMEBREW_BUMP_FORCE']    	#
+  livecheck 	= ENV['HOMEBREW_BUMP_LIVECHECK']	#
+  dryrun    	= ENV['HOMEBREW_BUMP_DRYRUN']   	#
 
   # Check inputs
   if livecheck.false?
