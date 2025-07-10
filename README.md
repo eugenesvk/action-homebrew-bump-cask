@@ -19,9 +19,11 @@ Listen for new tags in workflow:
 
 ```yaml
 on:
-  push:
-    tags:
-      - '*'
+  release: # trigger when release got created (preferred)
+    types: [created]
+  # push:  # trigger on tag push
+  #   tags:
+  #     - '*'
 ```
 
 The Action will extract all needed informations by itself, you just need to specify the following step in your workflow:
