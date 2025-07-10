@@ -85,10 +85,11 @@ module Homebrew
   git 'config', '--global', 'user.name' , user_name
   git 'config', '--global', 'user.email', user_email
 
-  # Always tap homebrew/core, otherwise brew can't find formulae
-  brew 'tap', 'homebrew/core'
-  # Tap the requested tap if applicable
-  brew 'tap', tap_path unless tap_path.blank?
+  if tap_path.blank?
+    brew 'tap', 'homebrew/core', '--force'
+  else # Tap the requested tap if applicable
+    brew 'tap', tap_path
+  end
 
   # Append additional PR message
   message = if message.blank?
