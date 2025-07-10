@@ -101,6 +101,11 @@ module Homebrew
             end
   message += '[`action-homebrew-bump-cask`](https://github.com/eugenesvk/action-homebrew-bump-cask)'
 
+  unless force.false?
+    brew_repo = read_brew '--repository'
+    git '-C', brew_repo, 'apply', "#{__dir__}/brew-bump-formula-pr.rb.patch"
+  end
+
   # Do the livecheck stuff or not
   if livecheck.false?
     # Change cask name to full name: 'caskName' → 'userName/tapName/caskName'
@@ -126,8 +131,6 @@ module Homebrew
       *("--fork-org=#{org}"   	unless org    .blank?)	, # Use the specified GitHub organization for forking
       *("--no-fork"           	unless no_fork.false?)	, #
       *("--version=#{version}"	)                     	, # Specify the new version for the cask
-      *('--force'             	unless force  .false?)	, # Ignore duplicate open PRs
-      *('--quiet'             	unless force  .false?)	, #
       *('--dry-run'           	unless dryrun .false?)	, # Print what would be done rather than doing it
       cask_full_name
       # tag/revisions             	not supported in casks	  #
@@ -177,8 +180,6 @@ module Homebrew
           "--version=#{version}",
           *("--fork-org=#{org}"	unless org   .blank?),
           *("--no-fork"        	unless no_fork.false?),
-          *('--force'          	unless force .false?),
-          *('--quiet'          	unless force .false?),
           *('--dry-run'        	unless dryrun.false?),
           cask_name
       rescue ErrorDuringExecution => e
