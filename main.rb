@@ -158,7 +158,7 @@ module Homebrew
     json = read_brew \
       'livecheck',
       '--cask',
-      '--quiet',
+      # '--quiet', # don't suppress error output in logs
       '--newer-only',
       '--full-name',
       '--json',
