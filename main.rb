@@ -131,6 +131,7 @@ module Homebrew
       *("--fork-org=#{org}"   	unless org    .blank?)	, # Use the specified GitHub organization for forking
       *("--no-fork"           	unless no_fork.false?)	, #
       *("--version=#{version}"	)                     	, # Specify the new version for the cask
+      *('--force'             	unless force  .false?)	, # Ignore duplicate open PRs
       *('--dry-run'           	unless dryrun .false?)	, # Print what would be done rather than doing it
       cask_full_name
       # tag/revisions             	not supported in casks	  #
@@ -180,6 +181,7 @@ module Homebrew
           "--version=#{version}",
           *("--fork-org=#{org}"	unless org   .blank?),
           *("--no-fork"        	unless no_fork.false?),
+          *('--force'          	unless force .false?),
           *('--dry-run'        	unless dryrun.false?),
           cask_name
       rescue ErrorDuringExecution => e
