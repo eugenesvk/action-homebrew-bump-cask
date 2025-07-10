@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'cask'
-require 'utils/pypi'
 
 class Object
   def false?
@@ -119,14 +118,6 @@ module Homebrew
     # url_new  	= url_tag # explicit urls override #{version} templates, so skip them
 
     exit(0) if version_tag == version_manifest # exit if no version update required
-
-    # Check if cask is originating from PyPi
-      # starts with PYTHONHOSTED_URL_PREFIX="https://files.pythonhosted.org/packages/"
-    pypi_url = PyPI.update_pypi_url(url_old.to_s, version_tag)
-    if pypi_url
-      url_new = pypi_url       	# Substitute url
-      brew 'install', 'pipgrip'	# Install pipgrip utility so resources from PyPi get updated too
-    end
 
     brew 'bump-cask-pr', # Finally bump the cask
       '--no-audit'            	                      	, # Don't run brew audit before opening the PR
