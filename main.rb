@@ -50,6 +50,8 @@ module Homebrew
 
   # Get inputs
   message  	= ENV['HOMEBREW_BUMP_MESSAGE']  	#
+  user_name 	= ENV['HOMEBREW_GIT_NAME']      	#
+  user_email	= ENV['HOMEBREW_GIT_EMAIL']     	#
   org      	= ENV['HOMEBREW_BUMP_ORG']      	# 'orgName'
   no_fork  	= ENV['HOMEBREW_BUMP_NO_FORK']  	#
   tap_path 	= ENV['HOMEBREW_BUMP_TAP']      	# 'userName/tapName'
@@ -70,7 +72,7 @@ module Homebrew
   user      	= GitHub::API.open_rest "#{GitHub::API_URL}/user"
   user_id   	= user['id']
   user_login	= user['login']
-  user_name 	= user['name'] || user['login']
+  user_name 	= user['name'] || user['login'] if user_name.blank?
   user_email	= user['email'] || (
     # https://help.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
     user_created_at	= Date.parse user['created_at']
@@ -79,7 +81,7 @@ module Homebrew
     user_email     	= "#{user_login}@users.noreply.github.com"
     user_email     	= "#{user_id}+#{user_email}" if need_plus_email
     user_email
-  )
+  ) if user_email.blank?
 
   # Tell git who you are
   git 'config', '--global', 'user.name' , user_name

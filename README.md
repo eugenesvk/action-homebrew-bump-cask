@@ -35,6 +35,8 @@ The Action will extract all needed informations by itself, you just need to spec
     token   	: ${{secrets.TOKEN}}	# Required, custom personal GitHub access token with the 'public_repo' and 'workflow' scopes
     cask    	: CASK              	# Required  Cask name
     tap     	: USER/REPO         	# Optional, defaults to homebrew/core
+    user_name 	: name              	# Optional, will commit with this user name
+    user_email	: email@example.com 	# Optional, will commit with this user email
     org     	: ORG               	# Optional, will create tap repo fork in organization
     no_fork 	: false             	# Optional, use the origin repository instead of forking
     tag     	: ${{github.ref}}   	# Optional, will be determined automatically
@@ -57,6 +59,8 @@ If there are no outdated casks, the Action will just exit.
     token    	: ${{secrets.TOKEN}}         	# Required, custom personal GitHub access token with only the 'public_repo' scope enabled
     cask     	: CASK-1, CASK-2, CASK-3, ...	# Bump only these casks if outdated
     tap      	: USER/REPO                  	# Bump all outdated casks in this tap
+    user_name 	: name              	# Optional, will commit with this user name
+    user_email	: email@example.com 	# Optional, will commit with this user email
     org      	: ORG                        	# Optional, will create tap repo fork in organization
     force    	: false                      	# Optional, if don't want to check for already open PRs
     livecheck	: true                       	# Need to set this input if want to use `brew livecheck`
