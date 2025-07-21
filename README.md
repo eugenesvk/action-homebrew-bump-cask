@@ -73,4 +73,4 @@ https://github.com/eugenesvk/homebrew-bump/blob/main/.github/workflows/bump_home
 
 ## Known issues
 
-- `livecheck` mode in Homebrew fails to get the latest version is target repo's versioning scheme changed (e.g., `0.1.0` from today will be sorted as an older version than some `20201023201011-abcdefg` )
+- `livecheck` mode in Homebrew fails to get the latest version if target repo's versioning scheme changed (e.g., `0.1.0` from today will be sorted as an older version than some `20201023201011-abcdefg` )
